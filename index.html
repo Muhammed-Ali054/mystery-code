@@ -1,53 +1,213 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hi there! 👋</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-        .card {
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 16px;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        h1 { font-size: 1.8rem; margin-bottom: 10px; }
-        p { color: #94a3b8; line-height: 1.6; }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background-color: #38bdf8;
-            color: #0f172a;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
-        .btn:hover { transform: scale(1.05); }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Willkommen zu meiner GameShow! 🎪</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background: #0d1117;
+      color: #e6edf3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 20px;
+      max-width: 440px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 1.6rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    p.sub {
+      color: #8b949e;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: #21262d;
+      padding: 4px;
+      border-radius: 12px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      color: #8b949e;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: #38bdf8;
+      color: #0d1117;
+    }
+    .content-section {
+      display: none;
+    }
+    .content-section.active {
+      display: block;
+    }
+    .input-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #8b949e;
+      margin-bottom: 6px;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+    .input-group input:focus {
+      border-color: #38bdf8;
+      outline: none;
+    }
+    .quiz-card {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      padding: 14px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+    .quiz-card p {
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .quiz-opts {
+      display: flex;
+      gap: 8px;
+    }
+    .quiz-opt {
+      flex: 1;
+      padding: 10px;
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #e6edf3;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-opt.selected-correct {
+      background: rgba(46, 160, 67, 0.2);
+      border-color: #2ea043;
+      color: #3fb950;
+    }
+    .quiz-opt.selected-wrong {
+      background: rgba(248, 81, 73, 0.2);
+      border-color: #f85149;
+      color: #f85149;
+    }
+    .btn-main {
+      width: 100%;
+      padding: 14px;
+      background: #238636;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+    }
+    .btn-main:hover {
+      background: #2ea043;
+    }
+    .rsp-box {
+      background: #0d1117;
+      border: 1px dashed #38bdf8;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+      text-align: center;
+    }
+    .rsp-btns {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .rsp-btn {
+      font-size: 1.5rem;
+      padding: 10px 16px;
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .rsp-btn:hover {
+      background: #30363d;
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Stark, dass du gescannt hast! 🚀</h1>
-        <p>Neugier zahlt sich bekanntlich aus. Schön, dass du hier gelandet bist.</p>
-        <!-- Hier kannst du deinen Instagram-Account oder Kontakt-Link eintragen -->
-        <a href="https://instagram.com/dein-username" class="btn" target="_blank">Sag Hi auf Instagram</a>
+
+  <div class="card">
+    <div class="badge">KANDIDATEN-MATCH 🎯</div>
+    <h1>Willkommen zu meiner GameShow! 🎪</h1>
+    <p class="sub">Neugier zahlt sich aus. Wähle deinen Modus und spiel mit!</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="setTab('net')">🤝 Einfach vernetzen</button>
+      <button class="tab-btn" onclick="setTab('ken')">😉 Kennenlernen</button>
     </div>
-</body>
-</html>
+
+    <!-- TAB 1: VERNETZEN -->
+    <div id="tab-net" class="content-section active">
+      <div class="input-group">
+        <label>1. Wer bist du?</label>
+        <input type="text" id="net-who" placeholder="z.B. Philipp, der Neugierige vom Mond" oninput="updateNetMsg()">
+      </div>
+      <div class="input-group">
+        <label>2. Wo haben wir uns getroffen?</label>
+        <input type="text" id="net-where" placeholder="z.B. An der Bar" oninput="updateNetMsg()">
+      </div>
+      <div class="input-group">
+        <label>3. Was für 'ne Scheiße werden wir noch machen?</label>
+        <input type="text" id="net-what" placeholder="z.B. Echten Döner essen
